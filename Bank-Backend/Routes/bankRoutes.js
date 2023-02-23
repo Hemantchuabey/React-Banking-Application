@@ -1,8 +1,9 @@
 import express from "express";
-import { getAllAccount } from "../Controllers/bankControllers";
+import { getAllAccount, createAccount } from "../Controllers/bankControllers";
 
 const bankRouter = express.Router();
 
 bankRouter.get("/", getAllAccount);
+bankRouter.post("/createAccount", createAccount);
 
 export default bankRouter;
