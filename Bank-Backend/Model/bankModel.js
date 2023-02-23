@@ -10,8 +10,21 @@ const bankModel = new bankSchema({
     type: String,
     required: true,
   },
-  balance: {
+
+  accountType: {
     type: String,
+    required: true,
+  },
+  emailAdrress: {
+    type: String,
+    required: true,
+  },
+  phoneNo: {
+    type: String,
+    required: true,
+  },
+  accountBalance: {
+    type: Number,
     required: true,
   },
 });
