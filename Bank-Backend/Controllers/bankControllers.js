@@ -50,3 +50,34 @@ export const createAccount = async (req, res, next) => {
   }
   return res.status(201).json({ newAccount });
 };
+
+export const updateAccountBalance = async (req, res, next) => {
+  const {
+    firstName,
+    lastName,
+    accountType,
+    emailAdrress,
+    phoneNo,
+    accountBalance,
+  } = req.body;
+  let customerID = req.params.id;
+  let customer;
+  try {
+    customer = await bankModel.findByIdAndUpdate(customerID, {
+      firstName,
+      lastName,
+      accountType,
+      emailAdrress,
+      phoneNo,
+      accountBalance,
+    });
+  } catch (err) {
+    return console.log(err);
+  }
+  if (!customer) {
+    return res
+      .status(500)
+      .json({ message: "Unable to Update the Bank Details !!!" });
+  }
+  return res.status(200).json({ customer });
+};
