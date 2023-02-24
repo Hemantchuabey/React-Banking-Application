@@ -81,3 +81,17 @@ export const updateAccountBalance = async (req, res, next) => {
   }
   return res.status(200).json({ customer });
 };
+
+export const deleteAccount = async (req, res, next) => {
+  const customerID = req.params.id;
+  let customer;
+  try {
+    customer = await bankModel.findByIdAndRemove(customerID);
+  } catch (err) {
+    return console.log(err);
+  }
+  if (!customer) {
+    return res.status(500).json({ message: "Unable to Delete!!" });
+  }
+  return res.status(201).json({ customer });
+};
